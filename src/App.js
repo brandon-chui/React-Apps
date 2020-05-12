@@ -9,7 +9,15 @@ const api = {
 function App() {
   return (
     <div className="App">
-
+      <main>
+        <div className="search-box">
+          <input
+            type="text"
+            className="searchbar"
+            placeHolder="Name of City"
+          />
+        </div>
+      </main>
     </div>
   );
 }
