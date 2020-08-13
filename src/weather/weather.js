@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import moment from 'moment';
 import Button from './button';
 
@@ -8,7 +7,7 @@ const api = {
     url: "https://api.openweathermap.org/data/2.5/"
 }
 
-function App() {
+function Weather() {
 
     const [query, setQuery] = useState('');
     const [weather, setWeather] = useState({});
@@ -40,4 +39,4 @@ function App() {
     );
 }
 
-export default App;
+export default Weather;

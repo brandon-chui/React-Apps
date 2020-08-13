@@ -44,7 +44,7 @@ function TodosComponent() {
     }
 
     return (
-        <div className='todo'>
+        <section className='todo'>
             <Typography variant="h3" style={{ padding: 16}}>
                 React Todo
             </Typography>
@@ -54,7 +54,7 @@ function TodosComponent() {
                 toggleComplete={toggleComplete}
                 removeTodo={removeTodo}    
             />
-        </div>
+        </section>
     )
 }
 
