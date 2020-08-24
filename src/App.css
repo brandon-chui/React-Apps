@@ -84,7 +84,19 @@ section {
   margin: auto;
 }
 
-.todo {
+.todo, form {
   margin: auto;
   text-align: center;
+}
+
+.gifs {
+  display: flex;
+  margin: 0 auto;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gif {
+  padding: 2px;
 }
