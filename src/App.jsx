@@ -10,6 +10,7 @@ function App() {
   return (
     <section className='app'>
       <PracticeTodoComponent />
+      <GiphySearch />
 
     </section>
   );

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button, TextField } from '@material-ui/core';
 
 const api = 'PfnIKaqddP8ToolRtyJZpiFDumgcSPuI';
 
@@ -8,21 +9,16 @@ function GiphySearch() {
     const [value, setValue] = useState('');
     const [data, setData] = useState([]);
 
-    console.log(data)
-
     function handleSubmit(e) {
         e.preventDefault();
         async function searchGiphy(val) {
             const result = await axios(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=${api}&limit=5`)
 
             setData(result.data.data)
+            setValue('')
         }
 
-        handleSubmit(e.target.value)
-        // api.giphy.com/v1/gifs/search
-        // const result = axios(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=${api}&limit=5`)
-        // console.log(result.data)
-
+        searchGiphy(value);
     }
 
     useEffect(() => {
@@ -30,6 +26,7 @@ function GiphySearch() {
             const result = await axios(`http://api.giphy.com/v1/gifs/trending`, {
                 params: {
                     api_key: api,
+                    limit: 5,
                 }
             });
             
@@ -49,21 +46,25 @@ function GiphySearch() {
         })
     }
 
+    function handleChange(e) {
+        setValue(e.target.value);
+    }
+
     return  (
         <section>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Giphy Search
-                    <input
-                        placeholder='Search for gif'
-                        value={value}
-                        onChange={(e) => setValue(e.value)}
-                    >
-
-                    </input>
-                </label>
+                <TextField
+                    label="Gif Search"
+                    onChange={handleChange}
+                    name="gifSearch"
+                    value={value}
+                    type="text"
+                />
+                <Button type="submit" style={{ verticalAlign: 'bottom' }}>
+                    submit
+                </Button>
             </form>
-            <div class='gifs'>
+            <div className='gifs'>
                 {renderGifs(data)}
             </div>
         </section>
