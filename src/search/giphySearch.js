@@ -7,6 +7,7 @@ const api = 'PfnIKaqddP8ToolRtyJZpiFDumgcSPuI';
 function GiphySearch() {
 
     const [value, setValue] = useState('');
+    const [previousValue, setPreviousValue] = useState('');
     const [data, setData] = useState([]);
 
     function handleSubmit(e) {
@@ -15,6 +16,7 @@ function GiphySearch() {
             const result = await axios(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=${api}&limit=5`)
 
             setData(result.data.data)
+            setPreviousValue(value)
             setValue('')
         }
 
@@ -46,7 +48,7 @@ function GiphySearch() {
         })
     }
 
-    function handleChange(e) {
+    const handleChange = (e) => {
         setValue(e.target.value);
     }
 
@@ -64,6 +66,9 @@ function GiphySearch() {
                     submit
                 </Button>
             </form>
+            {previousValue && 
+                <h4>Search Results for {previousValue}</h4>}
+            
             <div className='gifs'>
                 {renderGifs(data)}
             </div>
